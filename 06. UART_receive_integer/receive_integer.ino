@@ -1,13 +1,14 @@
+String receive_value;  // String to store incoming data
+
 void setup() {
-  // put your setup code here, to run once:
-Serial.begin(9600);
+  Serial.begin(9600);  // Initialize serial communication at 9600 baud
 }
-String receive_value;
+
 void loop() {
-  // put your main code here, to run repeatedly:
-  if(Serial.available()>0)
-  {
-    Serial.println(Serial.readStringUntil('\n'));
+  if (Serial.available() > 0) {                      // Check if data is available
+    receive_value = Serial.readStringUntil('\n');    // Read incoming data until newline
+    int received_int = receive_value.toInt();        // Convert received string to integer
+    Serial.print("Received integer: ");              
+    Serial.println(received_int);                     // Print the received integer
   }
-//Serial.println(receive_value);
 }

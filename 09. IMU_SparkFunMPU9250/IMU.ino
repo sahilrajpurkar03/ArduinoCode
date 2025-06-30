@@ -1,37 +1,15 @@
-/************************************************************
-MPU9250_DMP_Quaternion
- Quaternion example for MPU-9250 DMP Arduino Library 
-Jim Lindblom @ SparkFun Electronics
-original creation date: November 23, 2016
-https://github.com/sparkfun/SparkFun_MPU9250_DMP_Arduino_Library
-
-The MPU-9250's digital motion processor (DMP) can calculate
-four unit quaternions, which can be used to represent the
-rotation of an object.
-
-This exmaple demonstrates how to configure the DMP to 
-calculate quaternions, and prints them out to the serial
-monitor. It also calculates pitch, roll, and yaw from those
-values.
-
-Development environment specifics:
-Arduino IDE 1.6.12
-SparkFun 9DoF Razor IMU M0
-
-Supported Platforms:
-- ATSAMD21 (Arduino Zero, SparkFun SAMD21 Breakouts)
-*************************************************************/
 #include <SparkFunMPU9250-DMP.h>
 
-#define SerialPort SerialUSB
+#define SerialPort SerialUSB  // Define serial port for debug output
 
-MPU9250_DMP imu;
+MPU9250_DMP imu;  // Create MPU9250 object
 
 void setup() 
 {
-  SerialPort.begin(115200);
-  Serial1.begin(115200);
-  // Call imu.begin() to verify communication and initialize
+  SerialPort.begin(115200);  // Initialize debug serial port
+  Serial1.begin(115200);     // Initialize secondary serial port (e.g., for communication)
+
+  // Initialize the IMU sensor and check connection
   if (imu.begin() != INV_SUCCESS)
   {
     while (1)
@@ -43,28 +21,29 @@ void setup()
     }
   }
   
-  imu.dmpBegin(DMP_FEATURE_6X_LP_QUAT | // Enable 6-axis quat
-               DMP_FEATURE_GYRO_CAL, // Use gyro calibration
-              10); // Set DMP FIFO rate to 10 Hz
-  // DMP_FEATURE_LP_QUAT can also be used. It uses the 
-  // accelerometer in low-power mode to estimate quat's.
-  // DMP_FEATURE_LP_QUAT and 6X_LP_QUAT are mutually exclusive
+  // Enable DMP features:
+  // 6-axis low-power quaternion + gyro calibration
+  imu.dmpBegin(DMP_FEATURE_6X_LP_QUAT | DMP_FEATURE_GYRO_CAL, 10); 
+  // 10 Hz FIFO update rate
 }
 
 void loop() 
 {
-  // Check for new data in the FIFO
-  if ( imu.fifoAvailable() )
+  // Check if new data available from FIFO buffer
+  if (imu.fifoAvailable())
   {
-    // Use dmpUpdateFifo to update the ax, gx, mx, etc. values
-    if ( imu.dmpUpdateFifo() == INV_SUCCESS)
+    // Update sensor data from FIFO
+    if (imu.dmpUpdateFifo() == INV_SUCCESS)
     {
-      // computeEulerAngles can be used -- after updating the
-      // quaternion values -- to estimate roll, pitch, and yaw
+      // Compute Euler angles from quaternion data
       imu.computeEulerAngles();
-      Serial1.write(imu.yaw);
+
+      // Send yaw over Serial1 as ASCII float (recommended)
+      Serial1.print("Yaw: ");
+      Serial1.println(imu.yaw);
+      
+      // Alternatively, send raw bytes (not human-readable):
+      // Serial1.write((uint8_t*)&imu.yaw, sizeof(imu.yaw));
     }
   }
 }
-
-
