@@ -105,33 +105,31 @@ Each project contains:
 
 ---
 
-## 5. UART Transmit Integer
+## 5. UART Communication – Transmit and Receive Integer
 
 ![UART Pinout](docs/uart_pinout.png)
 
-| Pin  | Function | Connection           |
-|-------|----------|----------------------|
-| 1     | TX       | Connect to RX of receiver  |
-| 0     | RX       | Connect to TX of receiver  |
-| GND   | Ground   | Common Ground         |
+This project demonstrates UART communication between two Arduino boards, where one **transmits integer data** and the other **receives and prints it**.
 
-**Code:**  
-- [UART_transmit_integer/transmit_integer.ino](./UART_transmit_integer/transmit_integer.ino)  
+### 🔌 Pin Configuration
 
----
+| Pin  | Function | Transmitter Connection      | Receiver Connection           |
+|------|----------|-----------------------------|-------------------------------|
+| D1   | TX       | → RX of Receiver (D0)       |                               |
+| D0   | RX       |                             | ← TX of Transmitter (D1)      |
+| GND  | Ground   | ↔ Common Ground             | ↔ Common Ground               |
 
-## 6. UART Receive Integer
+> ⚠️ Make sure both Arduino boards share a common ground for UART to work correctly.
 
-![UART Pinout](docs/uart_pinout.png)
+### 📂 Code
 
-| Pin  | Function | Connection           |
-|-------|----------|----------------------|
-| 1     | TX       | Connect to RX of transmitter |
-| 0     | RX       | Connect to TX of transmitter |
-| GND   | Ground   | Common Ground         |
+- **Transmitter**: [`UART_transmit_integer/transmit_integer.ino`](./UART_transmit_integer/transmit_integer.ino)  
+- **Receiver**: [`UART_receive_integer/receive_integer.ino`](./UART_receive_integer/receive_integer.ino)
 
-**Code:**  
-- [UART_receive_integer/receive_integer.ino](./UART_receive_integer/receive_integer.ino)  
+### 🧪 Expected Behavior
+
+- The **transmitter** continuously sends an increasing integer value every second.
+- The **receiver** reads the integer via UART and prints it to the serial monitor. 
 
 ---
 
