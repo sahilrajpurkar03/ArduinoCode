@@ -69,43 +69,40 @@ Each project contains:
 
 ---
 
-## 3. SPI Master Communication
+## 3. SPI Communication – Master and Slave
 
 ![SPI Pinout](docs/spi_pinout.png)
 
-| Pin  | Function        | Connection              |
-|-------|----------------|-------------------------|
-| 11    | MOSI           | Master Out, Slave In    |
-| 12    | MISO           | Master In, Slave Out    |
-| 13    | SCK            | Clock                   |
-| 10    | SS (Slave Select) | Selects Slave          |
-| GND   | Ground         | Common Ground           |
-| 5V    | Power          | Match board voltage     |
+This project demonstrates **SPI communication** between two Arduino boards:  
+- One configured as the **Master** to transmit data.  
+- One configured as the **Slave** to receive and display the data.
 
-**Code:**  
-- [SPI_MASTER/SPI_MASTER.ino](./SPI_MASTER/SPI_MASTER.ino)  
+### 🔌 Pin Configuration (Common SPI Pins)
 
----
+| Pin  | Function              | Master Arduino           | Slave Arduino            |
+|------|-----------------------|--------------------------|--------------------------|
+| 11   | MOSI (Master Out, Slave In) | → Connects to Slave's MOSI | ← Receives from Master's MOSI |
+| 12   | MISO (Master In, Slave Out) | ← Connects to Slave's MISO | → Sends to Master's MISO |
+| 13   | SCK  (Clock)          | → Drives Clock           | ← Receives Clock         |
+| 10   | SS (Slave Select)     | → Pull LOW to select     | Input - Chip Select      |
+| GND  | Ground                | ↔ Common Ground          | ↔ Common Ground          |
+| 5V   | Power (if needed)     | Shared if same board voltage | Shared if same board voltage |
 
-## 4. SPI Slave Communication
+> ⚠️ Connect **MOSI to MOSI**, **MISO to MISO**, **SCK to SCK**, and ensure **common GND** between devices.
 
-![SPI Pinout](docs/spi_pinout.png)
+### 📂 Code
 
-| Pin  | Function        | Connection              |
-|-------|----------------|-------------------------|
-| 11    | MOSI           | Master Out, Slave In    |
-| 12    | MISO           | Master In, Slave Out    |
-| 13    | SCK            | Clock                   |
-| 10    | SS (Slave Select) | Selects Slave          |
-| GND   | Ground         | Common Ground           |
-| 5V    | Power          | Match board voltage     |
+- **Master**: [`SPI_MASTER/SPI_MASTER.ino`](./SPI_MASTER/SPI_MASTER.ino)  
+- **Slave**: [`SPI_SLAVE/SPI_SLAVE.ino`](./SPI_SLAVE/SPI_SLAVE.ino)
 
-**Code:**  
-- [SPI_SLAVE/SPI_SLAVE.ino](./SPI_SLAVE/SPI_SLAVE.ino)  
+### 🧪 Expected Behavior
+
+- The **Master** sends incrementing integer data over SPI every 2 seconds.  
+- The **Slave** receives and prints the transmitted value via Serial Monitor.
 
 ---
 
-## 5. UART Communication – Transmit and Receive Integer
+## 4. UART Communication – Transmit and Receive Integer
 
 ![UART Pinout](docs/uart_pinout.png)
 
@@ -133,7 +130,7 @@ This project demonstrates UART communication between two Arduino boards, where o
 
 ---
 
-## 7. Stepper Motor Control
+## 5. Stepper Motor Control
 
 ![Stepper Pinout](docs/stepper_pinout.png)
 
