@@ -39,14 +39,26 @@ Each project contains:
 
 ![I2C Pinout](docs/i2c_master_slave_pinout.png)
 
-| Pin   | Function       | Connection                  |
-|-------|----------------|-----------------------------|
-| A4    | SDA (Data)     | Connect between Master & Slave |
-| A5    | SCL (Clock)    | Connect between Master & Slave |
-| GND   | Ground         | Common Ground                |
-| 5V    | Power          | Match board voltage          |
+This project demonstrates I2C communication where the Master requests data from the Slave, and the Slave transmits data back.
 
-**Code:**  
+| Pin   | Function       | Connection                         |
+|-------|----------------|----------------------------------|
+| A4    | SDA (Data)     | Connect SDA pins of Master & Slave |
+| A5    | SCL (Clock)    | Connect SCL pins of Master & Slave |
+| GND   | Ground         | Common Ground                     |
+| 5V    | Power          | Match board voltage               |
+
+### 📂 Code  
+- [I2C_Master/I2C_Master.ino](./I2C_Master/I2C_Master.ino)  
+- [I2C_Slave/I2C_Slave.ino](./I2C_Slave/I2C_Slave.ino)  
+
+### Expected Behavior
+- The Master Arduino sends a request to the Slave for data.
+- The Slave Arduino responds by transmitting the requested data.
+- The Master receives and prints the data on its Serial Monitor.
+- Communication runs smoothly at 100 kHz (standard I2C speed).
+
+### 📂 Code  
 - [I2C_Master/I2C_Master.ino](./I2C_Master/I2C_Master.ino)  
 - [I2C_Slave/I2C_Slave.ino](./I2C_Slave/I2C_Slave.ino)  
 
@@ -56,16 +68,26 @@ Each project contains:
 
 ![I2C Pinout](docs/i2c_master_slave_pinout.png)
 
-| Pin   | Function       | Connection                  |
-|-------|----------------|-----------------------------|
-| A4    | SDA (Data)     | Connect between Master & Slave |
-| A5    | SCL (Clock)    | Connect between Master & Slave |
-| GND   | Ground         | Common Ground                |
-| 5V    | Power          | Match board voltage          |
+This project demonstrates I2C communication where the Master transmits data to the Slave, and the Slave receives it.
 
-**Code:**  
+| Pin   | Function       | Connection                         |
+|-------|----------------|----------------------------------|
+| A4    | SDA (Data)     | Connect SDA pins of Master & Slave |
+| A5    | SCL (Clock)    | Connect SCL pins of Master & Slave |
+| GND   | Ground         | Common Ground                     |
+| 5V    | Power          | Match board voltage               |
+
+
+### 📂 Code  
 - [I2C_Master/I2C_Master.ino](./I2C_Master/I2C_Master.ino)  
-- [I2C_Slave/I2C_Slave.ino](./I2C_Slave/I2C_Slave.ino)  
+- [I2C_Slave/I2C_Slave.ino](./I2C_Slave/I2C_Slave.ino) 
+
+### Expected Behavior
+- The Master Arduino continuously sends data to the Slave.
+- The Slave Arduino receives the transmitted data and prints it on its Serial Monitor.
+- Data transmission occurs reliably without loss or errors.
+- Communication speed is set to standard I2C frequency.
+ 
 
 ---
 
@@ -134,46 +156,90 @@ This project demonstrates UART communication between two Arduino boards, where o
 
 ![Stepper Pinout](docs/stepper_pinout.png)
 
-| Pin | Function   |
-|------|------------|
-| 3    | STEP       |
-| 4    | DIR        |
-| GND  | Ground     |
-| 5V   | Power      |
+This project controls a **NEMA17 stepper motor** using a simple step and direction interface.
 
-**Code:**  
+The motor rotates to a specified angle in the **clockwise** direction and then reverses to the same angle in the **counter-clockwise** direction using digital pulses.
+
+> 🛠 The code assumes a **stepper driver (e.g., A4988 or DRV8825)** connected to the Arduino.  
+> Adjust steps per revolution in code if using a different motor or driver microstepping mode.
+
+### 🔌 Pin Configuration
+
+| Pin | Function   | Description                 |
+|------|------------|-----------------------------|
+| 3    | STEP       | Pulse to step motor         |
+| 4    | DIR        | Direction of rotation       |
+| GND  | Ground     | Common ground               |
+| 5V   | Power      | Motor driver logic supply   |
+
+### 📂 Code  
 - [Stepper_motor/Stepper_motor.ino](./Stepper_motor/Stepper_motor.ino)  
+
+### 🧪 Expected Behavior
+
+- On power-up, the motor:
+  - Rotates **90 degrees clockwise**
+  - Waits for **2 seconds**
+  - Rotates **90 degrees counter-clockwise**
+  - Waits for **2 seconds**
+- This cycle repeats continuously.
 
 ---
 
-## 8. Rotary Encoder Integration
+## 6. Rotary Encoder Integration
 
 ![Encoder Pinout](docs/encoder_pinout.png)
 
-| Pin  | Function           |
-|-------|--------------------|
-| A0    | Analog output      |
-| GND   | Ground             |
-| 5V    | Power              |
+This project reads the analog signal from a **Pankaj Rotary Encoder** (analog-type) to estimate the direction and amount of rotation.
 
-**Code:**  
+> ⚠️ This is not a typical quadrature encoder. It outputs analog voltages which are used to determine relative movement.
+
+### 🔌 Pin Configuration
+
+| Pin  | Function      | Description                         |
+|------|---------------|-------------------------------------|
+| A0   | Analog output | Reads voltage change from encoder   |
+| GND  | Ground        | Common ground                       |
+| 5V   | Power         | Sensor power supply                 |
+
+### 📂 Code  
 - [Rotary_encoder/rotary_encoder.ino](./Rotary_encoder/rotary_encoder.ino)  
 
+### 🧪 Expected Behavior
+
+- The code continuously monitors changes in analog voltage on **A0**.
+- It compares current and previous values to:
+  - Increment a counter when turned **clockwise**
+  - Decrement the counter when turned **counter-clockwise**
+- Output is printed to Serial Monitor as position updates (`disp1`).
 ---
 
-## 9. IMU MPU9250 Integration
+## 7. IMU MPU9250 Integration
 
 ![IMU Pinout](docs/imu_pinout.png)
 
-| Pin  | Function     |
-|-------|--------------|
-| A4    | SDA          |
-| A5    | SCL          |
-| 3.3V  | Power        |
-| GND   | Ground       |
+This project demonstrates integration of the **SparkFun MPU9250 IMU** sensor using the DMP (Digital Motion Processor) feature for real-time orientation tracking.
 
-**Code:**  
+### 🔌 Pin Configuration
+
+| Pin  | Function     | Description                     |
+|-------|--------------|---------------------------------|
+| A4    | SDA          | I2C Data Line                   |
+| A5    | SCL          | I2C Clock Line                  |
+| 3.3V  | Power        | Sensor power supply (3.3V)      |
+| GND   | Ground       | Common ground                   |
+
+### 📂 Code  
 - [IMU_SparkFunMPU9250/IMU.ino](./IMU_SparkFunMPU9250/IMU.ino)  
+
+### 🧪 Expected Behavior
+
+- The MPU9250 sensor initializes and starts its onboard DMP.
+- The sensor calculates quaternion data representing 3D orientation.
+- The Arduino reads and processes quaternion to compute yaw, pitch, and roll.
+- Yaw values are sent over Serial1.
+- The Serial Monitor displays debug info, and orientation data can be used for motion tracking applications.
+
 
 ---
 
