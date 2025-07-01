@@ -49,18 +49,14 @@ This project demonstrates I2C communication where the Master requests data from 
 | 5V    | Power          | Match board voltage               |
 
 ### 📂 Code  
-- [I2C_Master/I2C_Master.ino](./I2C_Master/I2C_Master.ino)  
-- [I2C_Slave/I2C_Slave.ino](./I2C_Slave/I2C_Slave.ino)  
+- [I2C_Master/I2C_Master.ino](./01. I2C_Master_receive_Slave_transmit/I2C_Master/I2C_Master.ino)  
+- [I2C_Slave/I2C_Slave.ino](./01. I2C_Master_receive_Slave_transmit/I2C_Slave/I2C_Slave.ino)  
 
 ### Expected Behavior
 - The Master Arduino sends a request to the Slave for data.
 - The Slave Arduino responds by transmitting the requested data.
 - The Master receives and prints the data on its Serial Monitor.
 - Communication runs smoothly at 100 kHz (standard I2C speed).
-
-### 📂 Code  
-- [I2C_Master/I2C_Master.ino](./I2C_Master/I2C_Master.ino)  
-- [I2C_Slave/I2C_Slave.ino](./I2C_Slave/I2C_Slave.ino)  
 
 ---
 
@@ -79,8 +75,8 @@ This project demonstrates I2C communication where the Master transmits data to t
 
 
 ### 📂 Code  
-- [I2C_Master/I2C_Master.ino](./I2C_Master/I2C_Master.ino)  
-- [I2C_Slave/I2C_Slave.ino](./I2C_Slave/I2C_Slave.ino) 
+- [I2C_Master/I2C_Master.ino](./02. I2C_Master_transmit_Slave_receive/I2C_Master/I2C_Master.ino)  
+- [I2C_Slave/I2C_Slave.ino](./02. I2C_Master_transmit_Slave_receive/I2C_Slave/I2C_Slave.ino) 
 
 ### Expected Behavior
 - The Master Arduino continuously sends data to the Slave.
@@ -114,8 +110,8 @@ This project demonstrates **SPI communication** between two Arduino boards:
 
 ### 📂 Code
 
-- **Master**: [`SPI_MASTER/SPI_MASTER.ino`](./SPI_MASTER/SPI_MASTER.ino)  
-- **Slave**: [`SPI_SLAVE/SPI_SLAVE.ino`](./SPI_SLAVE/SPI_SLAVE.ino)
+- **Master**: [`SPI_MASTER/SPI_MASTER.ino`](./03. SPI_MASTER/SPI_MASTER/SPI_MASTER.ino)  
+- **Slave**: [`SPI_SLAVE/SPI_SLAVE.ino`](./04. SPI_SLAVE/SPI_SLAVE/SPI_SLAVE.ino)
 
 ### 🧪 Expected Behavior
 
@@ -142,8 +138,8 @@ This project demonstrates UART communication between two Arduino boards, where o
 
 ### 📂 Code
 
-- **Transmitter**: [`UART_transmit_integer/transmit_integer.ino`](./UART_transmit_integer/transmit_integer.ino)  
-- **Receiver**: [`UART_receive_integer/receive_integer.ino`](./UART_receive_integer/receive_integer.ino)
+- **Transmitter**: [`UART_transmit_integer/transmit_integer.ino`](./05. UART_transmit_integer/UART_transmit_integer/transmit_integer.ino)  
+- **Receiver**: [`UART_receive_integer/receive_integer.ino`](./06. UART_receive_integer/UART_receive_integer/receive_integer.ino)
 
 ### 🧪 Expected Behavior
 
@@ -173,7 +169,7 @@ The motor rotates to a specified angle in the **clockwise** direction and then r
 | 5V   | Power      | Motor driver logic supply   |
 
 ### 📂 Code  
-- [Stepper_motor/Stepper_motor.ino](./Stepper_motor/Stepper_motor.ino)  
+- [Stepper_motor/Stepper_motor.ino](./07.%20Stepper_motor/Stepper_motor.ino)  
 
 ### 🧪 Expected Behavior
 
@@ -203,7 +199,7 @@ This project reads the analog signal from a **Pankaj Rotary Encoder** (analog-ty
 | 5V   | Power         | Sensor power supply                 |
 
 ### 📂 Code  
-- [Rotary_encoder/rotary_encoder.ino](./Rotary_encoder/rotary_encoder.ino)  
+- [Rotary_encoder/rotary_encoder.ino](./08.%20Rotary_encoder/rotary_encoder.ino)  
 
 ### 🧪 Expected Behavior
 
@@ -230,7 +226,7 @@ This project demonstrates integration of the **SparkFun MPU9250 IMU** sensor usi
 | GND   | Ground       | Common ground                   |
 
 ### 📂 Code  
-- [IMU_SparkFunMPU9250/IMU.ino](./IMU_SparkFunMPU9250/IMU.ino)  
+- [IMU_SparkFunMPU9250/IMU.ino](./09.%20IMU_SparkFunMPU9250/IMU.ino)  
 
 ### 🧪 Expected Behavior
 
