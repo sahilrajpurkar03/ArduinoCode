@@ -138,8 +138,8 @@ This project demonstrates UART communication between two Arduino boards, where o
 
 ### 📂 Code
 
-- **Transmitter**: [`UART_transmit_integer/transmit_integer.ino`](./05. UART_transmit_integer/UART_transmit_integer/transmit_integer.ino)  
-- **Receiver**: [`UART_receive_integer/receive_integer.ino`](./06. UART_receive_integer/UART_receive_integer/receive_integer.ino)
+- **Transmitter**: [`UART_transmit_integer/transmit_integer.ino`](./05.%20UART_transmit_integer/transmit_integer.ino)  
+- **Receiver**: [`UART_receive_integer/receive_integer.ino`](./06.%20UART_receive_integer/receive_integer.ino)
 
 ### 🧪 Expected Behavior
 
