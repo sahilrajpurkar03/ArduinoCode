@@ -49,8 +49,8 @@ This project demonstrates I2C communication where the Master requests data from 
 | 5V    | Power          | Match board voltage               |
 
 ### 📂 Code  
-- [I2C_Master/I2C_Master.ino](./01. I2C_Master_receive_Slave_transmit/I2C_Master/I2C_Master.ino)  
-- [I2C_Slave/I2C_Slave.ino](./01. I2C_Master_receive_Slave_transmit/I2C_Slave/I2C_Slave.ino)  
+- [I2C_Master/I2C_Master.ino](./01.%20I2C_Master_receive_Slave_transmit/I2C_Master/I2C_Master.ino)  
+- [I2C_Slave/I2C_Slave.ino](./01.%20I2C_Master_receive_Slave_transmit/I2C_Slave/I2C_Slave.ino)  
 
 ### Expected Behavior
 - The Master Arduino sends a request to the Slave for data.
@@ -75,8 +75,8 @@ This project demonstrates I2C communication where the Master transmits data to t
 
 
 ### 📂 Code  
-- [I2C_Master/I2C_Master.ino](./02. I2C_Master_transmit_Slave_receive/I2C_Master/I2C_Master.ino)  
-- [I2C_Slave/I2C_Slave.ino](./02. I2C_Master_transmit_Slave_receive/I2C_Slave/I2C_Slave.ino) 
+- [I2C_Master/I2C_Master.ino](./02.%20I2C_Master_transmit_Slave_receive/I2C_Master/I2C_Master.ino)  
+- [I2C_Slave/I2C_Slave.ino](./02.%20I2C_Master_transmit_Slave_receive/I2C_Slave/I2C_Slave.ino) 
 
 ### Expected Behavior
 - The Master Arduino continuously sends data to the Slave.
@@ -110,8 +110,8 @@ This project demonstrates **SPI communication** between two Arduino boards:
 
 ### 📂 Code
 
-- **Master**: [`SPI_MASTER/SPI_MASTER.ino`](./03. SPI_MASTER/SPI_MASTER/SPI_MASTER.ino)  
-- **Slave**: [`SPI_SLAVE/SPI_SLAVE.ino`](./04. SPI_SLAVE/SPI_SLAVE/SPI_SLAVE.ino)
+- **Master**: [`SPI_MASTER/SPI_MASTER.ino`](./03.%20SPI_MASTER/SPI_MASTER.ino)  
+- **Slave**: [`SPI_SLAVE/SPI_SLAVE.ino`](./04.%20SPI_SLAVE/SPI_SLAVE.ino)
 
 ### 🧪 Expected Behavior
 
